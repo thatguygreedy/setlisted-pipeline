@@ -1,0 +1,16 @@
+{
+  "name": "setlisted-pipeline",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Daily job that pulls DJ radio play data from xmplaylist and writes it to Postgres",
+  "scripts": {
+    "pull": "node daily-pull.js",
+    "pull:dry": "node daily-pull.js --dry-run"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "pg": "^8.11.5"
+  }
+}
