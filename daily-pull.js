@@ -23,7 +23,7 @@ const DRY_RUN = process.argv.includes("--dry-run");
 //    Find slugs by browsing https://xmplaylist.com and checking each
 //    station page's URL, e.g. xmplaylist.com/station/diplosrevolution
 // -----------------------------------------------------------------------
-const TRACKED_STATIONS = ["diplosrevolution", "tiestoprismatic"];
+const TRACKED_STATIONS = ["diplosrevolution", "bpm", "expertsonlyradio"];
 
 const XMPLAYLIST_FEED_URL = "https://xmplaylist.com/api/feed";
 const ITUNES_SEARCH_URL = "https://itunes.apple.com/search";
@@ -52,10 +52,10 @@ async function fetchFeed() {
 //    Adjust the field names on the right if the real response differs.
 // -----------------------------------------------------------------------
 function normalizeFeedItem(raw) {
-  const stationId = raw.channel ?? raw.station ?? raw.stationId;
-  const title = raw.track ?? raw.title ?? raw.song;
-  const artist = raw.artist ?? raw.artistName;
-  const playedAtRaw = raw.time ?? raw.playedAt ?? raw.timestamp;
+  const stationId = raw.channelId;
+  const title = raw.track?.title;
+  const artist = raw.track?.artists?.join(", ");
+  const playedAtRaw = raw.timestamp;
 
   if (!stationId || !title || !artist || !playedAtRaw) return null;
 
@@ -103,7 +103,7 @@ async function main() {
   console.log(`[${new Date().toISOString()}] Starting daily pull${DRY_RUN ? " (dry run)" : ""}`);
 
   const feed = await fetchFeed();
-  const rawItems = Array.isArray(feed) ? feed : feed.items ?? feed.plays ?? [];
+const rawItems = feed.results ?? [];
   console.log(`Fetched ${rawItems.length} raw feed items`);
 
   const normalized = rawItems
