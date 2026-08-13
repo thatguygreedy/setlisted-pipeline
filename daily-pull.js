@@ -43,7 +43,7 @@ async function fetchFeed() {
   }
   const data = await res.json();
   // Uncomment this once, run for real, and check the shape in your terminal:
-  // console.log(JSON.stringify(data, null, 2));
+   console.log(JSON.stringify(data, null, 2));
   return data;
 }
 
