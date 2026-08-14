@@ -23,7 +23,7 @@ const DRY_RUN = process.argv.includes("--dry-run");
 //    Find slugs by browsing https://xmplaylist.com and checking each
 //    station page's URL, e.g. xmplaylist.com/station/diplosrevolution
 // -----------------------------------------------------------------------
-const TRACKED_STATIONS = ["diplosrevolution", "bpm", "expertsonlyradio"];
+const TRACKED_STATIONS = ["diplosrevolution", "bpm", "expertsonlyradio", "astateofarmin", "steveaokisremixradio"];
 
 const XMPLAYLIST_FEED_URL = "https://xmplaylist.com/api/feed";
 const ITUNES_SEARCH_URL = "https://itunes.apple.com/search";
